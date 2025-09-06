@@ -1,5 +1,7 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
+
+import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays; 
@@ -44,4 +46,54 @@ public class PrimeNumberFinderTest{
 	assertEquals(12,PrimeNumberFinder.computeSumOfPrimes(input));
     }
 
+    // New test(s) for isPrime
+    @Test
+    public void negNumIsNotPrime() {
+        assertFalse(PrimeNumberFinder.isPrime(-1));
+    }
+
+    @Test
+    public void testDivByThreeNotPrime() {
+        assertFalse(PrimeNumberFinder.isPrime(9));
+    }
+
+    @Test
+    public void testDivByFiveNotPrime() {
+        assertFalse(PrimeNumberFinder.isPrime(25));
+    }
+
+    @Test
+    public void testLargeNotPrime() {
+        assertFalse(PrimeNumberFinder.isPrime(121));
+    }
+
+    @Test
+    public void testIsPrime3() {
+        assertFalse(PrimeNumberFinder.isPrime(49));
+    }
+
+    // New test(s) for full coverage
+    @Test
+    public void sumofP2() {
+        List<Integer> input = Collections.singletonList(1);
+        assertEquals(1,PrimeNumberFinder.computeSumOfPrimes(input));
+    }
+
+    // Fault 1
+    @Test
+    public void oneIsNotPrime() {
+        assertFalse(PrimeNumberFinder.isPrime(1));
+    }
+
+    // Fault 2
+    @Test
+    public void upperBoundShouldBeInclusive() {
+        assertEquals(Collections.singletonList(5), PrimeNumberFinder.findPrimes(5,5));
+    }
+
+    // Exception 1
+    @Test
+    public void emptyListSum() {
+        assertEquals(0, PrimeNumberFinder.computeSumOfPrimes(Collections.emptyList()));
+    }
 }
